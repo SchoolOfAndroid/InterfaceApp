@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Interface</string>
+
+
+    <string-array name="areas_array">
+        <item>Select Location</item>
+        <item>Dadar</item>
+        <item>Mahim</item>
+        <item>Bandra</item>
+        <item>Andheri</item>
+        <item>Borivali</item>
+        <item>Goregaon</item>
+        <item>Chruchgate</item>
+        <item>Virar</item>
+    </string-array>
+
+    <string-array name="occupations_array">
+        <item>Select Occupation</item>
+        <item>Plumber</item>
+        <item>Chartered Accountant</item>
+        <item>Mechanic</item>
+        <item>Electrician</item>
+    </string-array>
+
+    <string-array name="jobs_array">
+        <item>Select Job</item>
+        <item>Tax Return Filing</item>
+        <item>Water Proofing</item>
+        <item>Repairs and Maintenance</item>
+        <item>Wiring</item>
+    </string-array>
+
+    <string-array name="business_setup_array">
+        <item>Select Business Setup</item>
+        <item>Individual</item>
+        <item>Patnership Firm</item>
+        <item>Public Ltd. Co.</item>
+        <item>LLP</item>
+    </string-array>
+
+</resources>
