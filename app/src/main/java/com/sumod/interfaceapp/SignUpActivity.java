@@ -1,5 +1,6 @@
 package com.sumod.interfaceapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -43,6 +44,10 @@ public class SignUpActivity extends AppCompatActivity {
     protected void submitButtonClicked(){
 
         //This is where first OTP is verified and user is regstered.
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
+        startActivity(intent);
+        finish();
 
     }
 

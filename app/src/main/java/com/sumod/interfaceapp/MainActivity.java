@@ -16,18 +16,6 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
 
-    @ViewById(R.id.jobPosting_need)
-    Spinner jobPosting_need;
-
-    @ViewById(R.id.jobPosting_job)
-    Spinner jobPosting_job;
-
-    @ViewById(R.id.jobPosting_description)
-    EditText jobPosting_description;
-
-    @ViewById(R.id.jobPosting_area)
-    Spinner jobPosting_area;
-
     @ViewById(R.id.fab_postjob)
     FloatingActionButton fab_postjob;
 
@@ -54,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
         fab_findJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Enter code to go to FindJobActivity
+                Intent intent = new Intent(getApplicationContext(), FindJobActivity_.class);
+                startActivity(intent);
+
             }
         });
 
