@@ -1,5 +1,6 @@
 package com.sumod.interfaceapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -28,9 +29,8 @@ public class FindJobActivity extends AppCompatActivity {
 
     @Click(R.id.btn_findJobs)
     protected void gotoListJobsActivity(){
-        //Here make a request to database asking for available job postings
-        //according to the kind of job requested and then take the user to ListJobsActivity
-        //which will be a listview listing all available jobs
+        Intent intent = new Intent(this, JobListActivity_.class);
+        startActivity(intent);
     }
 
     @AfterViews
