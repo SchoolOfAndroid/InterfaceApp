@@ -23,7 +23,8 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_alignParentStart="true"
-                android:src="@drawable/logo_tv_2015"/>
+                android:src="@drawable/logo_tv_2015"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/title_signupactivity"
@@ -32,7 +33,8 @@
                 android:text="INTERFACE"
                 android:textSize="30sp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/subtitle_signupactivity"
@@ -41,37 +43,34 @@
                 android:text="My Space, My World"
                 android:textSize="20sp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"/>
 
 
 
         </RelativeLayout>
 
-        <LinearLayout
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/emailText"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:hint="Email"/>
 
-            <EditText
-                android:id="@+id/ed_referrer_phone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:layout_weight="1"
-                android:hint="Referrer's phone"
-                android:textSize="18sp"/>
-
-            <EditText
-                android:id="@+id/ed_infosource"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:layout_weight="1"
-                android:hint="Info Source"
-                android:textSize="18sp"/>
-        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passwordText"
+            android:layout_below="@+id/emailText"
+            android:layout_alignEnd="@+id/emailText"
+            android:layout_marginEnd="54dp"
+            android:hint="Password"
+            android:layout_margin="0dp"/>
 
         <EditText
             android:id="@+id/ed_user_phone"
@@ -137,7 +136,6 @@
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:text="Sign Up"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
