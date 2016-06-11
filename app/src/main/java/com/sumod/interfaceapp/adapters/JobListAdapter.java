@@ -1,6 +1,7 @@
 package com.sumod.interfaceapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.model.Job;
+import com.sumod.interfaceapp.multisms.ContactSelectionActivity;
+import com.sumod.interfaceapp.multisms.MessageEditorActivity;
 
 import java.util.ArrayList;
 
@@ -82,7 +85,8 @@ public class JobListAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-                Toast.makeText(context, "Refer was clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MessageEditorActivity.class);
+                context.startActivity(intent);
                 notifyDataSetChanged();
             }
         });
