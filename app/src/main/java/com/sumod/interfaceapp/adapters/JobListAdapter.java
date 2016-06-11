@@ -86,6 +86,8 @@ public class JobListAdapter extends BaseAdapter implements ListAdapter {
             public void onClick(View v) {
                 //do something
                 Intent intent = new Intent(context, MessageEditorActivity.class);
+                intent.putExtra("job", jobList.get(position).getJob());
+                intent.putExtra("occupation", jobList.get(position).getOccupation());
                 context.startActivity(intent);
                 notifyDataSetChanged();
             }

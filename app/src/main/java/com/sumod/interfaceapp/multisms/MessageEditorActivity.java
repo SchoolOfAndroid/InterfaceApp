@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,6 +40,12 @@ public class MessageEditorActivity extends AsimovActivity {
 
 	private void configureUI() {
 		setContentView(R.layout.activity_message_editor);
+
+		Intent intent = getIntent();
+		String messageToBeSent = intent.getStringExtra("occupation") + " needed for "
+				+ intent.getStringExtra("job") + ". Download Interface App now to know more.";
+
+		((MessageEditText) findViewById(R.id.message)).setText(messageToBeSent);
 
 		configureSendButton();
 		configureAddNameButton();
