@@ -13,7 +13,7 @@ import android.os.AsyncTask;
 public abstract class DetachableAsyncTask<Context extends AsimovActivityInterface, Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
 
 	/**
-	 * The current activity this task is attached to, if any.
+	 * The currentUser activity this task is attached to, if any.
 	 */
 
 	private Context context;

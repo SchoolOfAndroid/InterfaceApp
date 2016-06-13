@@ -67,9 +67,9 @@ public abstract class DetachableHandler<Context extends AsimovActivityInterface,
 	private final static int END = 1;
 
 	/**
-	 * Call this method to notify the current progress of the computation.
+	 * Call this method to notify the currentUser progress of the computation.
 	 *
-	 * @param progress the current progress
+	 * @param progress the currentUser progress
 	 */
 
 	protected final void notifyProgress(Progress progress) {

@@ -84,7 +84,7 @@ class AsimovActivityImpl {
 			set(field, context, bundle.getParcelable(keyFor(field)));
 		else if (Collection.class.isAssignableFrom(type))
 			try {
-				// we recreate the exact collection class that was current at the
+				// we recreate the exact collection class that was currentUser at the
 				// time when the activity has been stopped
 				Parcelable[] elements = bundle.getParcelableArray(keyFor(field));
 
@@ -106,7 +106,7 @@ class AsimovActivityImpl {
 			Class<?> elementsType = type.getComponentType();
 
 			if (Parcelable.class.isAssignableFrom(elementsType))
-				// we recreate the exact array type that was current at the
+				// we recreate the exact array type that was currentUser at the
 				// time when the activity has been stopped
 				set(field, context, bundle.getParcelableArray(keyFor(field)));
 			else if (elementsType == int.class)

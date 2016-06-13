@@ -4,12 +4,12 @@ package com.sumod.interfaceapp.model;
  * Created by sumodkulkarni on 11/6/16.
  */
 public class Job {
-
     private long id;
     private String occupation;
     private String job;
-    private String jobDescription;
-    private String location;
+    private String need;
+    private String description;
+    private String location_id;
 
 
     //Constructors
@@ -23,12 +23,12 @@ public class Job {
         this.job = job;
     }
 
-    public Job(long id, String occupation, String job, String jobDescription, String location) {
+    public Job(long id, String need, String job, String jobDescription, String location_id) {
         this.id = id;
-        this.occupation = occupation;
+        this.need = need;
         this.job = job;
-        this.jobDescription = jobDescription;
-        this.location = location;
+        this.description = jobDescription;
+        this.location_id = location_id;
     }
 
     //Getters and Setters
@@ -42,7 +42,7 @@ public class Job {
     }
 
     public String getOccupation() {
-        return occupation;
+        return need;
     }
 
     public void setOccupation(String occupation) {
@@ -57,20 +57,20 @@ public class Job {
         this.job = job;
     }
 
-    public String getJobDescription() {
-        return jobDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getLocation() {
-        return location;
+        return location_id;
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        this.location_id = location;
     }
 
 }

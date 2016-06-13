@@ -20,14 +20,41 @@ android {
     }
 }
 
+ext {
+    AAVersion = "3.3.2"
+    autoParcelVersion = "0.1"
+    daggerVersion = "1.2.2"
+    googleAnalyticsVersion = "8.3.0"
+    leakCanaryVersion = "1.3.1"
+    zlombokVersion = "1.16.6"
+    okHttpVersion = "3.0.0-RC1"
+    picassoVersion = "2.5.2"
+    retrofit2Version = "2.0.0-beta3"
+    retrofitVersion = "2.0.0-beta2"
+    supportVersion = "23.1.1"
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.2.0'
     compile 'org.androidannotations:androidannotations:4.0.0'
     compile 'com.google.code.gson:gson:2.4'
+
+    // Dagger, A fast dependency injector for Android and Java
+    compile "com.squareup.dagger:dagger:$daggerVersion"
+    provided "com.squareup.dagger:dagger-compiler:$daggerVersion"
+
+    // Retrofit 2 & OkHttp
+    compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    compile("com.squareup.retrofit2:retrofit:$retrofit2Version") {
+        // exclude Retrofit’s OkHttp peer-dependency module and define your own module import
+        exclude module: 'okhttp'
+    }
+    compile "com.squareup.retrofit2:converter-gson:$retrofit2Version"
 }
 
 apt {
@@ -39,7 +66,7 @@ apt {
         // resourcePackageName "your.package.name"
 
         // You can set optional annotation processing options here, like these commented options:
-        // logLevel 'INFO'
-        // logFile '/var/log/aa.log'
+//         logLevel 'INFO'
+//         logFile '/var/log/aa.log'
     }
 }

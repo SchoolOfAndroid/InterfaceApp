@@ -1,7 +1,6 @@
 package com.sumod.interfaceapp;
 
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -13,11 +12,24 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 @EActivity(R.layout.activity_sign_up)
 public class SignUpActivity extends AppCompatActivity {
+    @ViewById(R.id.nameText)
+    EditText nameText;
+
+    @ViewById(R.id.emailText)
+    EditText emailText;
+
     @ViewById(R.id.ed_user_phone)
     EditText userPhone;
+
+    @ViewById(R.id.passwordText)
+    EditText password;
 
     @ViewById(R.id.spinner_user_area)
     Spinner userArea;
@@ -35,12 +47,36 @@ public class SignUpActivity extends AppCompatActivity {
     @Click(R.id.submit_button)
     protected void submitButtonClicked() {
 
-        // This is where first OTP is verified and user is registered.
-        Toast.makeText(this, "Your account is created", Toast.LENGTH_LONG).show();
-//        finishActivity();
-//        Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
-//        startActivity(intent);
-        finish();
+        Call<String> call = Api.service.signup(
+                nameText.getText().toString(),
+                emailText.getText().toString(),
+                userPhone.getText().toString(),
+                password.getText().toString(),
+                userArea.getSelectedItemPosition(),
+                userOccupation.getSelectedItem().toString(),
+                userJobs.getSelectedItem().toString(),
+                businessSetUp.getSelectedItem().toString()
+        );
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Response<String> response) {
+                if (response.isSuccess()) {
+                    Toast.makeText(getApplicationContext(), "Your account is created", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Your account couldn't be created", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(Throwable t) {
+
+                t.printStackTrace();
+            }
+        });
     }
 
 

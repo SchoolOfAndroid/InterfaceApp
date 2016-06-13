@@ -44,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FindJobActivity_.class);
                 startActivity(intent);
-
             }
         });
-
     }
 }

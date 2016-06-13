@@ -29,6 +29,15 @@
             android:layout_marginBottom="5dp"/>
 
         <TextView
+            android:id="@+id/list_item_description"
+            android:text="Need"
+            android:textColor="#727272"
+            android:textSize="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
             android:id="@+id/list_item_occupation"
             android:text="Need"
             android:textColor="#727272"
