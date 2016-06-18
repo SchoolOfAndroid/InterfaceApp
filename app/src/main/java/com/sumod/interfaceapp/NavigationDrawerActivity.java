@@ -1,7 +1,9 @@
 package com.sumod.interfaceapp;
 
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
 import com.blunderer.materialdesignlibrary.handlers.ActionBarDefaultHandler;
 import com.blunderer.materialdesignlibrary.handlers.ActionBarHandler;
 import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerAccountsHandler;
@@ -17,6 +19,7 @@ import com.sumod.interfaceapp.fragments.MessagesFragment;
 
 public class NavigationDrawerActivity extends com.blunderer.materialdesignlibrary.activities.NavigationDrawerActivity {
 
+    private Toolbar mToolbar;
 
     @Override
     protected boolean enableActionBarShadow() {

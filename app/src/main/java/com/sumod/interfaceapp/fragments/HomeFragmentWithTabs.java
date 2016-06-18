@@ -14,7 +14,8 @@ public class HomeFragmentWithTabs
                         ProposalsFragment.newInstance("sampleString", "sampleString"))
                 .addPage(R.string.leads,
                         LeadsFragment.newInstance("sampleString", "sampleString"))
-                .addPage(R.string.refs, ReferencesFragments.newInstance("sampleString", "sampleString"));
+                .addPage(R.string.refs, ReferencesFragments.newInstance("sampleString", "sampleString"))
+                .addPage("Filter", FilterFragment_.newInstance("sampleString", "sampleString"));
     }
 
     @Override
