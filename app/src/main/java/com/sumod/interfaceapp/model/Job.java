@@ -15,6 +15,7 @@ public class Job {
     //Constructors
 
     public Job() {
+
     }
 
     public Job(long id, String occupation, String job) {
@@ -74,3 +75,5 @@ public class Job {
     }
 
 }
+
+//    A senior editor at the Big Indian news, with an experience of three years in the field of writing. A responsible citizen of India, who aspires to convey the message of peace and great fullness. A qualified Journalist, here to bring you the most authentic and reliable news.
