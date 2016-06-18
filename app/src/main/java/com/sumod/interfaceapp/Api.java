@@ -1,6 +1,7 @@
 package com.sumod.interfaceapp;
 
 
+import com.sumod.interfaceapp.model.CoreData;
 import com.sumod.interfaceapp.model.Job;
 import com.sumod.interfaceapp.model.User;
 
@@ -25,8 +26,8 @@ public class Api {
 
     static {
         Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://192.168.1.102/mahendra/")
-                .baseUrl("http://mh.bigindiannews.com/")
+                .baseUrl(App.HOST)
+//                .baseUrl("http://mh.bigindiannews.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(createClient())
                 .build();
@@ -66,6 +67,10 @@ public class Api {
 
 
     public interface ApiService {
+        @GET("values.php")
+        Call<CoreData> init();
+
+
         @GET("jobs.php?get")
         Call<List<Job>> listJobs(
                 @Query("need") String need,

@@ -1,8 +1,6 @@
 package com.sumod.interfaceapp.fragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,20 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.sumod.interfaceapp.Api;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.adapters.JobListAdapter;
 import com.sumod.interfaceapp.model.Job;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LeadsFragment extends Fragment {
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -37,9 +29,11 @@ public class LeadsFragment extends Fragment {
     public static final String EXTRA_NEED = ".NEED";
     public static final String EXTRA_LOCATION = ".LOC";
 
+
     public LeadsFragment() {
         // Required empty public constructor
     }
+
 
     public static LeadsFragment newInstance(String param1, String param2) {
         LeadsFragment fragment = new LeadsFragment();
@@ -50,6 +44,7 @@ public class LeadsFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +54,14 @@ public class LeadsFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_leads, container, false);
     }
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
