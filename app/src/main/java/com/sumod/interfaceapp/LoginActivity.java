@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "You are logged in", Toast.LENGTH_LONG).show();
                     App.currentUser = response.body();
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
+                    Intent intent = new Intent(getApplicationContext(), NavigationDrawerActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_LONG).show();
