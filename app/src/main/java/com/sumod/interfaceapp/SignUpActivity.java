@@ -3,6 +3,7 @@ package com.sumod.interfaceapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -42,6 +43,18 @@ public class SignUpActivity extends AppCompatActivity {
 
     @ViewById(R.id.spinner_business_set_up)
     Spinner businessSetUp;
+
+    @ViewById(R.id.checkbox_find_jobs)
+    CheckBox findJobs;
+
+    @ViewById(R.id.checkbox_find_services)
+    CheckBox findServices;
+
+    @ViewById(R.id.checkbox_offer_jobs)
+    CheckBox offerJobs;
+
+    @ViewById(R.id.checkbox_offer_services)
+    CheckBox offerServices;
 
 
     @Click(R.id.submit_button)

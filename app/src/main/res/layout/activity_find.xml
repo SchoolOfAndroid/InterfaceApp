@@ -55,6 +55,52 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interested In:"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_find_jobs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finding Jobs"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_offer_jobs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Offering Jobs"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_find_services"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finding Services"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_offer_services"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Offering Services"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+
         </LinearLayout>
 
     </ScrollView>
