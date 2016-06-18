@@ -25,6 +25,11 @@
     <string name="confirmation">Confirm your action</string>
     <string name="confirmation_message">You are going to send bla bla bla</string>
 
+    <string-array name="service_or_job_array">
+        <item>Select Job or Service</item>
+        <item>Service</item>
+        <item>Job</item>
+    </string-array>
 
     <string-array name="areas_array">
         <item>Select Location</item>
