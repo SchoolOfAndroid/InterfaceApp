@@ -1,18 +1,7 @@
 package com.sumod.interfaceapp;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
-import com.blunderer.materialdesignlibrary.activities.ViewPagerActivity;
-import com.blunderer.materialdesignlibrary.fragments.ListViewFragment;
-import com.blunderer.materialdesignlibrary.fragments.ScrollViewFragment;
-import com.blunderer.materialdesignlibrary.fragments.ViewPagerFragment;
-import com.blunderer.materialdesignlibrary.fragments.ViewPagerWithTabsFragment;
 import com.blunderer.materialdesignlibrary.handlers.ActionBarDefaultHandler;
 import com.blunderer.materialdesignlibrary.handlers.ActionBarHandler;
 import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerAccountsHandler;
@@ -20,7 +9,6 @@ import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerAccountsMenu
 import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerBottomHandler;
 import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerStyleHandler;
 import com.blunderer.materialdesignlibrary.handlers.NavigationDrawerTopHandler;
-import com.blunderer.materialdesignlibrary.interfaces.NavigationDrawer;
 import com.blunderer.materialdesignlibrary.models.Account;
 import com.sumod.interfaceapp.fragments.HomeFragment;
 import com.sumod.interfaceapp.fragments.HomeFragmentWithTabs;

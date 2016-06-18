@@ -1,24 +1,19 @@
 package com.sumod.interfaceapp.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sumod.interfaceapp.FindActivity_;
 import com.sumod.interfaceapp.FindJobActivity_;
+import com.sumod.interfaceapp.PostActivity_;
 import com.sumod.interfaceapp.PostJobActivity_;
 import com.sumod.interfaceapp.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class HomeFragment extends Fragment {
 
@@ -50,7 +45,7 @@ public class HomeFragment extends Fragment {
         fab_postjob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PostJobActivity_.class);
+                Intent intent = new Intent(getContext(), PostActivity_.class);
                 startActivity(intent);
             }
         });
@@ -58,7 +53,7 @@ public class HomeFragment extends Fragment {
         fab_findJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), FindJobActivity_.class);
+                Intent intent = new Intent(getContext(), FindActivity_.class);
                 startActivity(intent);
 
             }
