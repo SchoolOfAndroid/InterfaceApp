@@ -1,5 +1,6 @@
 package com.sumod.interfaceapp;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
@@ -82,7 +83,17 @@ public class NavigationDrawerActivity extends com.blunderer.materialdesignlibrar
                 .addItem(R.string.logout, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(NavigationDrawerActivity.this, "This will LogOut", Toast.LENGTH_SHORT).show();
+                        closeNavigationDrawer();
+
+                        Intent intent = new Intent(NavigationDrawerActivity.this, EntryActivity_.class);
+
+                        // Set this flag to erase the back stack
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(intent);
+                        finish(); // call this to finish the current activity
+
+//                        Toast.makeText(NavigationDrawerActivity.this, "This will LogOut", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
