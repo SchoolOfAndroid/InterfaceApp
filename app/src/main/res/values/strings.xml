@@ -5,6 +5,7 @@
     <string name="leads">Leads</string>
     <string name="business">Business</string>
     <string name="messages">Messages</string>
+    <string name="logout">LogOut</string>
 
     <string name="title_activity_contact_selection">Contact Selection</string>
     <string name="title_activity_message_editor">Multi SMS</string>

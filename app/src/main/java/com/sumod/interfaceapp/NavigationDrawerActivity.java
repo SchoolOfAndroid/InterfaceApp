@@ -1,10 +1,12 @@
 package com.sumod.interfaceapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.blunderer.materialdesignlibrary.activities.ViewPagerActivity;
 import com.blunderer.materialdesignlibrary.fragments.ListViewFragment;
@@ -85,7 +87,13 @@ public class NavigationDrawerActivity extends com.blunderer.materialdesignlibrar
 
     @Override
     public NavigationDrawerBottomHandler getNavigationDrawerBottomHandler() {
-        return null;
+        return new NavigationDrawerBottomHandler(this)
+                .addItem(R.string.logout, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(NavigationDrawerActivity.this, "This will LogOut", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
