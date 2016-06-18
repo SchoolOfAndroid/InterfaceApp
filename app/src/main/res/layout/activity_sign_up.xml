@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.sumod.interfaceapp.SignUpActivity">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.sumod.interfaceapp.SignUpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/logo_signupactivity"
@@ -30,78 +30,55 @@
                 android:id="@+id/title_signupactivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:text="INTERFACE"
                 android:textSize="30sp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
                 android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/subtitle_signupactivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:text="My Space, My World"
                 android:textSize="20sp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
                 android:visibility="gone"/>
-
 
 
         </RelativeLayout>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="10"
             android:id="@+id/nameText"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:hint="Name"/>
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/emailText"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:hint="Email"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:layout_alignParentTop="true"
             android:ems="10"
-            android:id="@+id/passwordText"
-            android:layout_below="@+id/emailText"
-            android:layout_alignEnd="@+id/emailText"
-            android:layout_marginEnd="54dp"
-            android:hint="Password"
-            android:layout_margin="0dp"/>
+            android:hint="Name"
+            android:inputType="text"/>
 
         <EditText
             android:id="@+id/ed_user_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
             android:layout_gravity="center_horizontal"
-            android:hint="Phone"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="Phone"
+            android:inputType="phone"
             android:textSize="18sp"/>
 
         <Spinner
             android:id="@+id/spinner_user_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:layout_gravity="center_horizontal"
-            android:hint="Area of Occupation"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="Area of Occupation"
+            android:inputType="text"
             android:textSize="18sp"/>
 
         <Spinner
@@ -109,28 +86,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:textSize="18sp"/>
 
         <Spinner
             android:id="@+id/spinner_user_jobs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
             android:textSize="18sp"/>
 
         <Spinner
             android:id="@+id/spinner_business_set_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
             android:textSize="18sp"/>
 
         <!--<EditText
@@ -144,11 +121,11 @@
 
         <Button
             android:id="@+id/submit_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:text="Sign Up"/>
 
     </LinearLayout>
 

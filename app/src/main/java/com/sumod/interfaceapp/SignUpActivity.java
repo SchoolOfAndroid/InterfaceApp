@@ -1,12 +1,15 @@
 package com.sumod.interfaceapp;
 
 
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.sumod.interfaceapp.model.User;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -23,14 +26,8 @@ public class SignUpActivity extends AppCompatActivity {
     @ViewById(R.id.nameText)
     EditText nameText;
 
-    @ViewById(R.id.emailText)
-    EditText emailText;
-
     @ViewById(R.id.ed_user_phone)
     EditText userPhone;
-
-    @ViewById(R.id.passwordText)
-    EditText password;
 
     @ViewById(R.id.spinner_user_area)
     Spinner userArea;
@@ -44,28 +41,32 @@ public class SignUpActivity extends AppCompatActivity {
     @ViewById(R.id.spinner_business_set_up)
     Spinner businessSetUp;
 
+
     @Click(R.id.submit_button)
     protected void submitButtonClicked() {
+        String android_id = Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID);
 
-        Call<String> call = Api.service.signup(
+        Call<User> call = Api.service.signup(
                 nameText.getText().toString(),
-                emailText.getText().toString(),
                 userPhone.getText().toString(),
-                password.getText().toString(),
-                userArea.getSelectedItemPosition(),
-                userOccupation.getSelectedItem().toString(),
-                userJobs.getSelectedItem().toString(),
-                businessSetUp.getSelectedItem().toString()
+                android_id,
+                businessSetUp.getSelectedItem().toString(),
+                1,
+                0, 0,
+                1, null,
+                0, 0
         );
 
-        call.enqueue(new Callback<String>() {
+
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Response<String> response) {
+            public void onResponse(Response<User> response) {
                 if (response.isSuccess()) {
                     Toast.makeText(getApplicationContext(), "Your account is created", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Your account couldn't be created", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Your account is already registered", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -73,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-
+                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                 t.printStackTrace();
             }
         });

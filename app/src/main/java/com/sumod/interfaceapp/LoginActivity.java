@@ -2,6 +2,7 @@ package com.sumod.interfaceapp;
 
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,15 +20,17 @@ import retrofit2.Response;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
-    @ViewById(R.id.emailText) EditText email;
-    @ViewById(R.id.passwordText) EditText password;
+    @ViewById(R.id.phoneText) EditText email;
 
 
     @Click(R.id.loginButton)
     void loginClicked() {
+        String android_id = Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
         Call<User> call = Api.service.login(
                 email.getText().toString(),
-                password.getText().toString()
+                android_id
         );
 
         call.enqueue(new Callback<User>() {
@@ -40,14 +43,14 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), NavigationDrawerActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "You are not registered on this phone", Toast.LENGTH_LONG).show();
                 }
             }
 
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                 t.printStackTrace();
             }
         });

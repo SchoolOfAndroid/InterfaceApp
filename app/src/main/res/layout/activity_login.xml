@@ -13,30 +13,18 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/emailText"
+        android:id="@+id/phoneText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:hint="Email"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordText"
-        android:layout_below="@+id/emailText"
-        android:layout_alignEnd="@+id/emailText"
-        android:layout_marginEnd="54dp"
-        android:hint="Password"
-        android:layout_margin="0dp"/>
+        android:hint="Phone Number"
+        android:inputType="phone"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/loginButton"
-        android:layout_below="@+id/passwordText"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/phoneText"/>
 </RelativeLayout>
