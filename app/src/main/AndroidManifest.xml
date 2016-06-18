@@ -25,18 +25,20 @@
 
         <activity android:name=".JobListActivity_"></activity>
 
-        <activity android:name=".EntryActivity_">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".EntryActivity_"></activity>
 
         <activity android:name=".LoginActivity_"></activity>
 
         <activity android:name=".multisms.ContactSelectionActivity"></activity>
 
         <activity android:name=".multisms.MessageEditorActivity"></activity>
+
+        <activity android:name=".NavigationDrawerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
     </application>
 

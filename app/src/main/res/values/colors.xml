@@ -7,4 +7,7 @@
     <color name="grey">#88CCCCCC</color>
     <color name="light_red">#88CCAAAA</color>
 
+    <color name="cyan">#00FFFF</color>
+    <color name="gray">#bdbdbd</color>
+
 </resources>

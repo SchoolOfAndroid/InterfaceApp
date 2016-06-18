@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Interface</string>
+    <string name="home">Home</string>
+    <string name="proposals">Proposals</string>
+    <string name="leads">Leads</string>
+    <string name="business">Business</string>
+    <string name="messages">Messages</string>
 
     <string name="title_activity_contact_selection">Contact Selection</string>
     <string name="title_activity_message_editor">Multi SMS</string>
