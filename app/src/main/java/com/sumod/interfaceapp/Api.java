@@ -3,6 +3,7 @@ package com.sumod.interfaceapp;
 
 import com.sumod.interfaceapp.model.CoreData;
 import com.sumod.interfaceapp.model.Job;
+import com.sumod.interfaceapp.model.Lead;
 import com.sumod.interfaceapp.model.User;
 
 import java.io.IOException;
@@ -15,7 +16,11 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
@@ -77,6 +82,7 @@ public class Api {
                 @Query("job") String job,
                 @Query("location_id") int locationid);
 
+
         @GET("jobs.php?add")
         Call<String> postJob(
                 @Query("creator_id") int creatorId,
@@ -85,20 +91,41 @@ public class Api {
                 @Query("description") String description,
                 @Query("location_id") int locationid);
 
-        @GET("login.php?signin")
-        Call<String> signup(
-                @Query("name") String name,
-                @Query("email") String email,
-                @Query("phone") String phone,
-                @Query("password") String password,
-                @Query("location_id") int locationid,
-                @Query("occupation") String occupation,
-                @Query("job") String job,
-                @Query("bizType") String bizType);
 
-        @GET("login.php?login")
+        @FormUrlEncoded
+        @POST("login.php")
         Call<User> login(
-                @Query("email") String email,
-                @Query("password") String password);
+                @Field("phone") String phone,
+                @Field("password") String password);
+
+
+        @FormUrlEncoded
+        @POST("signup.php")
+        Call<User> signup(
+                @Field("name") String name,
+                @Field("phone") String phone,
+                @Field("password") String password,
+                @Field("bizType") String bizType,
+
+                @Field("location_id") Integer locationid,
+                @Field("job_sector_id") Integer job_sector_id,
+                @Field("job_role_id") Integer job_role_id,
+                @Field("service_occupation_id") Integer service_occupation_id,
+                @Field("service_name_id") Integer service_name_id,
+
+                @Field("product_channel_id") Integer product_channel_id,
+                @Field("product_name_id") Object product_name_id);
+
+
+        @GET("leads.php")
+        Call<List<Lead>> getLeads(@Query("userid") int userId);
+
+
+        @POST("leads.php")
+        Call<Lead> createLead(@Body Lead lead);
+
+
+        @GET("proposals.php")
+        Call<List<Lead>> getProposals(@Query("userid") int userId);
     }
 }

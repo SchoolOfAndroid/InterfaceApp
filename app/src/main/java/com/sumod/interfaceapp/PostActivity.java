@@ -1,10 +1,13 @@
 package com.sumod.interfaceapp;
 
+
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,26 +20,31 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 @EActivity(R.layout.activity_post)
 public class PostActivity extends AppCompatActivity {
 
-    @ViewById(R.id.spinner_post_service_or_job)
-    Spinner service_or_job;
+    @ViewById(R.id.spinner_post_service_or_job) Spinner service_or_job;
 
-    @ViewById(R.id.jobPosting_need)
-    Spinner jobPosting_need;
+    @ViewById(R.id.jobPosting_need) Spinner jobPosting_need;
+    @ViewById(R.id.jobPosting_job) Spinner jobPosting_job;
 
-    @ViewById(R.id.jobPosting_job)
-    Spinner jobPosting_job;
+    @ViewById(R.id.service_spinner_name) Spinner serviceName;
+    @ViewById(R.id.service_spinner_occup) Spinner serviceOccup;
 
-    @ViewById(R.id.jobPosting_description)
-    EditText jobPosting_description;
+    @ViewById(R.id.products_spinner_ch) Spinner productsChannel;
+    @ViewById(R.id.products_spinner_name) Spinner productsName;
 
-    @ViewById(R.id.jobPosting_area)
-    Spinner jobPosting_area;
+    @ViewById(R.id.jobPosting_description) EditText jobPosting_description;
 
-    @ViewById(R.id.btn_postJob)
-    Button button_postJob;
+    @ViewById(R.id.jobPosting_area) Spinner jobPosting_area;
+
+    @ViewById(R.id.btn_postJob) Button button_postJob;
+
+    @ViewById(R.id.jobs_layout) LinearLayout jobsLayout;
+    @ViewById(R.id.service_layout) LinearLayout servicesLayout;
+    @ViewById(R.id.products_layout) LinearLayout productsLayout;
+    @ViewById(R.id.results_layout) LinearLayout resultsLayout;
 
 
     @Click(R.id.btn_postJob)
@@ -73,6 +81,53 @@ public class PostActivity extends AppCompatActivity {
         populateSpinner(jobPosting_need, R.array.occupations_array);
         populateSpinner(jobPosting_job, R.array.jobs_array);
         populateSpinner(jobPosting_area, R.array.areas_array);
+
+        populateSpinner(serviceName, R.array.areas_array);
+        populateSpinner(serviceOccup, R.array.areas_array);
+
+        populateSpinner(productsChannel, R.array.areas_array);
+        populateSpinner(productsName, R.array.areas_array);
+
+
+        service_or_job.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateLayouts();
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                updateLayouts();
+            }
+        });
+
+        updateLayouts();
+    }
+
+
+    void updateLayouts() {
+        jobsLayout.setVisibility(View.GONE);
+        servicesLayout.setVisibility(View.GONE);
+        productsLayout.setVisibility(View.GONE);
+
+        if (service_or_job.getSelectedItemPosition() == 0) {
+            resultsLayout.setVisibility(View.GONE);
+        } else {
+            resultsLayout.setVisibility(View.VISIBLE);
+
+            switch (service_or_job.getSelectedItemPosition()) {
+                case 1:
+                    jobsLayout.setVisibility(View.VISIBLE);
+                    break;
+                case 2:
+                    servicesLayout.setVisibility(View.VISIBLE);
+                    break;
+                case 3:
+                    productsLayout.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
     }
 
 

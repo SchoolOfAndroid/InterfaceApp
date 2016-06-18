@@ -92,8 +92,6 @@ public class NavigationDrawerActivity extends com.blunderer.materialdesignlibrar
 
                         startActivity(intent);
                         finish(); // call this to finish the current activity
-
-//                        Toast.makeText(NavigationDrawerActivity.this, "This will LogOut", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
