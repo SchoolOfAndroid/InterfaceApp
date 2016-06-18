@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.sumod.interfaceapp.Api;
+import com.sumod.interfaceapp.PostJobActivity_;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.adapters.JobListAdapter;
 import com.sumod.interfaceapp.model.Job;
@@ -32,6 +34,7 @@ public class LeadsFragment extends Fragment {
 
 
     private ListView listView_jobs;
+    private FloatingActionButton fab_postjob;
 
     public static final String EXTRA_JOB = ".JOB";
     public static final String EXTRA_NEED = ".NEED";
@@ -71,6 +74,15 @@ public class LeadsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         listView_jobs = (ListView) view.findViewById(R.id.listView_jobs);
+
+        fab_postjob = (FloatingActionButton) view.findViewById(R.id.fab_postjob);
+        fab_postjob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PostJobActivity_.class);
+                startActivity(intent);
+            }
+        });
 
         populateListView();
     }

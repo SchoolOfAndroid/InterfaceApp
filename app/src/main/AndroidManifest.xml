@@ -31,7 +31,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".FindActivity_" />
-        <activity android:name=".PostActivity_"></activity>
+        <activity android:name=".PostActivity_">
+
+        </activity>
     </application>
 
 </manifest>
