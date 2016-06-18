@@ -13,7 +13,8 @@ public class HomeFragmentWithTabs
                 .addPage(R.string.proposals,
                         ProposalsFragment.newInstance("sampleString", "sampleString"))
                 .addPage(R.string.leads,
-                        LeadsFragment.newInstance("sampleString", "sampleString"));
+                        LeadsFragment.newInstance("sampleString", "sampleString"))
+                .addPage(R.string.refs, ReferencesFragments.newInstance("sampleString", "sampleString"));
     }
 
     @Override

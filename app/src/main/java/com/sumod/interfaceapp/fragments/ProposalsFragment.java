@@ -1,17 +1,26 @@
 package com.sumod.interfaceapp.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.sumod.interfaceapp.R;
+import com.sumod.interfaceapp.adapters.JobListAdapter;
+import com.sumod.interfaceapp.adapters.ProposalListAdapter;
+import com.sumod.interfaceapp.model.Job;
+import com.sumod.interfaceapp.model.Proposal;
+
+import java.util.ArrayList;
 
 
 public class ProposalsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+    private ListView listView_proposals;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -47,5 +56,28 @@ public class ProposalsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_proposals, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        listView_proposals = (ListView) view.findViewById(R.id.listView_proposals);
+        populateListView();
+
+    }
+
+    protected void populateListView() {
+
+        ArrayList<Proposal> proposals = new ArrayList<>();
+
+        proposals.add(new Proposal("John", "RequestInfoHere", "Job"));
+        proposals.add(new Proposal("James", "RequestInfoHere", "Service"));
+        proposals.add(new Proposal("Jack", "RequestInfoHere", "Job"));
+        proposals.add(new Proposal("Jenna", "RequestInfoHere", "Service"));
+        proposals.add(new Proposal("Jacob", "RequestInfoHere", "Job"));
+
+        ProposalListAdapter myProposalListAdapter = new ProposalListAdapter(getContext(), proposals);
+
+        listView_proposals.setAdapter(myProposalListAdapter);
+
+    }
 }
