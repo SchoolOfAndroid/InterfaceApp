@@ -13,9 +13,7 @@ import android.widget.Toast;
 
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.adapters.ChatListAdapter;
-import com.sumod.interfaceapp.adapters.JobListAdapter;
 import com.sumod.interfaceapp.model.Chat;
-import com.sumod.interfaceapp.model.Job;
 
 import java.util.ArrayList;
 

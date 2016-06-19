@@ -72,8 +72,8 @@ public class NavigationDrawerActivity extends com.blunderer.materialdesignlibrar
     @Override
     public NavigationDrawerTopHandler getNavigationDrawerTopHandler() {
         return new NavigationDrawerTopHandler(getApplicationContext())
-                .addItem(R.string.home,new HomeFragment())
-                .addItem(R.string.business, new HomeFragmentWithTabs())
+                .addItem(R.string.business,new HomeFragment())
+//                .addItem(R.string.business, new HomeFragmentWithTabs())
                 .addItem(R.string.messages, new MessagesFragment());
     }
 

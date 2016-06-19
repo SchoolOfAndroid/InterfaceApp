@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.sumod.interfaceapp.adapters.JobListAdapter;
+import com.sumod.interfaceapp.adapters.LeadListAdapter;
 import com.sumod.interfaceapp.model.Job;
 
 import org.androidannotations.annotations.AfterViews;
@@ -49,8 +49,8 @@ public class JobListActivity extends AppCompatActivity {
             public void onResponse(Response<List<Job>> response) {
                 jobList.addAll(response.body());
 
-                JobListAdapter myJobListAdapter = new JobListAdapter(JobListActivity.this, jobList);
-                listView_jobs.setAdapter(myJobListAdapter);
+//                LeadListAdapter myLeadListAdapter = new LeadListAdapter(JobListActivity.this, jobList);
+//                listView_jobs.setAdapter(myLeadListAdapter);
             }
 
 

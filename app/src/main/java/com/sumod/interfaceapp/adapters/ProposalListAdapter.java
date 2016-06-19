@@ -1,5 +1,6 @@
 package com.sumod.interfaceapp.adapters;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.sumod.interfaceapp.model.Proposal;
 
 import java.util.ArrayList;
 
+
 /**
  * Created by sumodkulkarni on 19/6/16.
  */
@@ -21,25 +23,30 @@ public class ProposalListAdapter extends BaseAdapter implements ListAdapter {
     private Context context;
     private ArrayList<Proposal> proposalsList;
 
+
     public ProposalListAdapter(Context context, ArrayList<Proposal> list) {
         this.context = context;
         this.proposalsList = list;
     }
+
 
     @Override
     public int getCount() {
         return proposalsList.size();
     }
 
+
     @Override
     public Object getItem(int position) {
         return proposalsList.get(position);
     }
 
+
     @Override
     public long getItemId(int position) {
         return proposalsList.get(position).getId();
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

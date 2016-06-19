@@ -4,6 +4,7 @@ package com.sumod.interfaceapp;
 import com.sumod.interfaceapp.model.CoreData;
 import com.sumod.interfaceapp.model.Job;
 import com.sumod.interfaceapp.model.Lead;
+import com.sumod.interfaceapp.model.Proposal;
 import com.sumod.interfaceapp.model.User;
 
 import java.io.IOException;
@@ -16,7 +17,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -121,11 +121,31 @@ public class Api {
         Call<List<Lead>> getLeads(@Query("userid") int userId);
 
 
+        @FormUrlEncoded
         @POST("leads.php")
-        Call<Lead> createLead(@Body Lead lead);
+        Call<Lead> createLead(
+                @Field("creator_id") Integer creator_id,
+                @Field("description") String description,
+                @Field("job_sector_id") Integer job_sector_id,
+                @Field("job_role_id") Integer job_role_id,
+                @Field("is_job_seeker") Integer is_job_seeker,
+                @Field("service_occupation_id") Integer service_occupation_id,
+                @Field("service_name_id") Integer service_name_id,
+                @Field("is_service_seeker") Integer is_service_seeker,
+                @Field("product_name_id") Integer product_name_id,
+                @Field("product_channel_id") Integer product_channel_id,
+                @Field("is_product_seeker") Integer is_product_seeker,
+                @Field("location_id") Integer location_id);
 
 
         @GET("proposals.php")
-        Call<List<Lead>> getProposals(@Query("userid") int userId);
+        Call<List<Proposal>> getProposals(@Query("user_id") int userId);
+
+
+        @FormUrlEncoded
+        @POST("proposals.php")
+        Call<Proposal> createProposal(
+                @Field("user_id") Integer user_id,
+                @Field("lead_id") Integer lead_id);
     }
 }

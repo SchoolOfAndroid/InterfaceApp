@@ -10,6 +10,8 @@ public class Proposal {
     private String requestInfo;
     private String requestType;
 
+    public Lead lead;
+    public User user;
     //Constructors
 
 

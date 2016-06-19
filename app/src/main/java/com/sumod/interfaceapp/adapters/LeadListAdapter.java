@@ -12,24 +12,30 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sumod.interfaceapp.Api;
+import com.sumod.interfaceapp.App;
 import com.sumod.interfaceapp.R;
-import com.sumod.interfaceapp.model.Job;
+import com.sumod.interfaceapp.model.Lead;
+import com.sumod.interfaceapp.model.Proposal;
 import com.sumod.interfaceapp.multisms.MessageEditorActivity;
 
 import java.util.ArrayList;
+
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
  * Created by sumodkulkarni on 12/6/16.
  */
 
-public class JobListAdapter extends BaseAdapter implements ListAdapter {
+public class LeadListAdapter extends BaseAdapter implements ListAdapter {
 
-    private ArrayList<Job> jobList = new ArrayList<Job>();
+    private ArrayList<Lead> jobList = new ArrayList<>();
     private Context context;
 
 
-    public JobListAdapter(Context context, ArrayList<Job> list) {
+    public LeadListAdapter(Context context, ArrayList<Lead> list) {
         this.jobList = list;
         this.context = context;
     }
@@ -49,10 +55,7 @@ public class JobListAdapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public long getItemId(int pos) {
-
-        return jobList.get(pos).getId();
-        //just return 0 if your list items do not have an Id variable.
-
+        return jobList.get(pos).id;
     }
 
 
@@ -69,9 +72,9 @@ public class JobListAdapter extends BaseAdapter implements ListAdapter {
         TextView jobOccupation = (TextView) view.findViewById(R.id.list_item_occupation);
         TextView jobDescription = (TextView) view.findViewById(R.id.list_item_description);
 
-        jobName.setText(jobList.get(position).getJob());
-        jobOccupation.setText(jobList.get(position).getOccupation());
-        jobDescription.setText(jobList.get(position).getDescription());
+        jobName.setText(jobList.get(position).getTitle());
+//        jobOccupation.setText(jobList.get(position).getOccupation());
+        jobDescription.setText(jobList.get(position).description);
 
         //Handle buttons and add onClickListeners
         ImageView openChat = (ImageView) view.findViewById(R.id.list_item_eng);
@@ -80,18 +83,32 @@ public class JobListAdapter extends BaseAdapter implements ListAdapter {
         openChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //do something
-                Toast.makeText(context, "Chat was clicked", Toast.LENGTH_SHORT).show();
+                Api.service.createProposal(
+                        App.currentUser.id,
+                        jobList.get(position).id
+                ).enqueue(new Callback<Proposal>() {
+                    @Override
+                    public void onResponse(Response<Proposal> response) {
+                        Toast.makeText(context, "Your proposal has been sent!", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Toast.makeText(context, "Something went wrong.", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 notifyDataSetChanged();
             }
         });
+
         referJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //do something
                 Intent intent = new Intent(context, MessageEditorActivity.class);
-                intent.putExtra("job", jobList.get(position).getJob());
-                intent.putExtra("occupation", jobList.get(position).getOccupation());
+                intent.putExtra("job", jobList.get(position).getTitle());
+//                intent.putExtra("occupation", jobList.get(position).getOccupation());
                 context.startActivity(intent);
                 notifyDataSetChanged();
             }

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sumod.interfaceapp.PostActivity_;
 import com.sumod.interfaceapp.PostJobActivity_;
 import com.sumod.interfaceapp.R;
 
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment {
         fab_postjob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PostJobActivity_.class);
+                Intent intent = new Intent(getContext(), PostActivity_.class);
                 startActivity(intent);
             }
         });

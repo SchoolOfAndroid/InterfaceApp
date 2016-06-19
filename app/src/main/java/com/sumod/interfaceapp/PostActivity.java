@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.sumod.interfaceapp.model.Lead;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -19,6 +21,7 @@ import org.androidannotations.annotations.ViewById;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Field;
 
 
 @EActivity(R.layout.activity_post)
@@ -49,18 +52,59 @@ public class PostActivity extends AppCompatActivity {
 
     @Click(R.id.btn_postJob)
     protected void postJob() {
-        Call<String> call = Api.service.postJob(
-                App.currentUser.id,
-                jobPosting_need.getSelectedItem().toString(),
-                jobPosting_job.getSelectedItem().toString(),
-                jobPosting_description.getText().toString(),
-                jobPosting_area.getSelectedItemPosition()
+        // TODO: validate();
+
+        // Create the lead
+        Lead lead = new Lead();
+        lead.creator_id = App.currentUser.id;
+        lead.description =   jobPosting_description.getText().toString();
+        lead.location_id = jobPosting_area.getSelectedItemPosition();
+
+        switch (service_or_job.getSelectedItemPosition()) {
+            case 1:
+                // TODO Don't use selected positions; use proper id..
+                lead.job_role_id = jobPosting_need.getSelectedItemPosition();
+                lead.job_sector_id = jobPosting_job.getSelectedItemPosition();
+                lead.is_job_seeker = 0;
+                break;
+            case 2:
+                lead.service_name_id = serviceName.getSelectedItemPosition();
+                lead.service_occupation_id = serviceOccup.getSelectedItemPosition();
+                lead.is_service_seeker = 0;
+                break;
+            case 3:
+                lead.product_channel_id = productsChannel.getSelectedItemPosition();
+                lead.product_name_id = productsName.getSelectedItemPosition();
+                lead.is_product_seeker = 0;
+                break;
+        }
+
+        // Send it to the backend
+        Call<Lead> call = Api.service.createLead(
+                lead.creator_id,
+                lead.description,
+                lead.job_sector_id,
+                lead.job_role_id,
+                lead.is_job_seeker,
+                lead.service_occupation_id,
+                lead.service_name_id,
+                lead.is_service_seeker,
+                lead.product_name_id,
+                lead.product_channel_id,
+                lead.is_product_seeker,
+                lead.location_id
         );
 
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Response<String> response) {
 
+        call.enqueue(new Callback<Lead>() {
+            @Override
+            public void onResponse(Response<Lead> response) {
+                if (response.isSuccess()) {
+                    Toast.makeText(getApplicationContext(), "Your post has been submitted!", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+
+                }
             }
 
 
@@ -69,9 +113,6 @@ public class PostActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
-
-        Toast.makeText(this, "Your job has been posted!", Toast.LENGTH_LONG).show();
-        finish();
     }
 
 
@@ -137,6 +178,5 @@ public class PostActivity extends AppCompatActivity {
                 array_id, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         spinner.setAdapter(adapter);
-
     }
 }

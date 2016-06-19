@@ -1,11 +1,8 @@
 package com.sumod.interfaceapp.fragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.sumod.interfaceapp.Api;
-import com.sumod.interfaceapp.PostJobActivity_;
+import com.sumod.interfaceapp.App;
 import com.sumod.interfaceapp.R;
-import com.sumod.interfaceapp.adapters.JobListAdapter;
-import com.sumod.interfaceapp.model.Job;
+import com.sumod.interfaceapp.adapters.LeadListAdapter;
+import com.sumod.interfaceapp.model.Lead;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +21,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class LeadsFragment extends Fragment {
 
@@ -34,15 +32,17 @@ public class LeadsFragment extends Fragment {
 
 
     private ListView listView_jobs;
-    private FloatingActionButton fab_postjob;
+//    private FloatingActionButton fab_postjob;
 
     public static final String EXTRA_JOB = ".JOB";
     public static final String EXTRA_NEED = ".NEED";
     public static final String EXTRA_LOCATION = ".LOC";
 
+
     public LeadsFragment() {
         // Required empty public constructor
     }
+
 
     public static LeadsFragment newInstance(String param1, String param2) {
         LeadsFragment fragment = new LeadsFragment();
@@ -53,6 +53,7 @@ public class LeadsFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,7 @@ public class LeadsFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,39 +71,35 @@ public class LeadsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_leads, container, false);
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         listView_jobs = (ListView) view.findViewById(R.id.listView_jobs);
-
-        fab_postjob = (FloatingActionButton) view.findViewById(R.id.fab_postjob);
-        fab_postjob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PostJobActivity_.class);
-                startActivity(intent);
-            }
-        });
-
         populateListView();
     }
 
 
     protected void populateListView() {
+        final ArrayList<Lead> leadLists = new ArrayList<>();
 
-        ArrayList<Job> jobList = new ArrayList<>();
+        Call<List<Lead>> call = Api.service.getLeads(App.currentUser.id);
 
-        jobList.add(new Job(0, "Plumber", "Toilet Plumbing"));
-        jobList.add(new Job(1, "Carpenter", "Fix front door"));
-        jobList.add(new Job(2, "Teacher", "Math tuition"));
-        jobList.add(new Job(3, "Electrician", "Change light bulb"));
-        jobList.add(new Job(4, "Watchman", "Guard my house"));
-        jobList.add(new Job(5, "Cableguy", "Fix the damn cable"));
+        call.enqueue(new Callback<List<Lead>>() {
+            @Override
+            public void onResponse(Response<List<Lead>> response) {
+                leadLists.addAll(response.body());
+            }
 
-        JobListAdapter myJobListAdapter = new JobListAdapter(getContext(), jobList);
 
-        listView_jobs.setAdapter(myJobListAdapter);
+            @Override
+            public void onFailure(Throwable t) {
 
+            }
+        });
+
+        LeadListAdapter myLeadListAdapter = new LeadListAdapter(getContext(), leadLists);
+        listView_jobs.setAdapter(myLeadListAdapter);
     }
 }
