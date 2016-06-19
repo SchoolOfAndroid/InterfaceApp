@@ -12,8 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sumod.interfaceapp.Api;
-import com.sumod.interfaceapp.App;
+import com.sumod.interfaceapp.ChatActivity;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.model.Lead;
 import com.sumod.interfaceapp.model.Proposal;

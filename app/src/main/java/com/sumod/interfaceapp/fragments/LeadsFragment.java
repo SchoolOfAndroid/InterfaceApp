@@ -1,6 +1,7 @@
 package com.sumod.interfaceapp.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.sumod.interfaceapp.Api;
-import com.sumod.interfaceapp.App;
+
+import com.sumod.interfaceapp.PostActivity_;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.adapters.LeadListAdapter;
 import com.sumod.interfaceapp.model.Lead;
@@ -77,6 +78,16 @@ public class LeadsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         listView_jobs = (ListView) view.findViewById(R.id.listView_jobs);
+
+        fab_postjob = (FloatingActionButton) view.findViewById(R.id.fab_postjob);
+        fab_postjob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PostActivity_.class);
+                startActivity(intent);
+            }
+        });
+
         populateListView();
     }
 

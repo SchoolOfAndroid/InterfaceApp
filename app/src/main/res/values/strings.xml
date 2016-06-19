@@ -8,6 +8,20 @@
     <string name="logout">LogOut</string>
     <string name="refs">Refs</string>
 
+
+    <!-- For Chat workflow -->
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white_E0">#eceff5</color>
+    <color name="white_tran">#55ffffff</color>
+    <color name="white_tran11">#22ffffff</color>
+
+    <color name="primaryText">#1f1f1f</color>
+    <color name="secondaryText">#6d6d6d</color>
+    <color name="disabledText">#939393</color>
+
+
+    <!--For SMS workflow -->
     <string name="title_activity_contact_selection">Contact Selection</string>
     <string name="title_activity_message_editor">Multi SMS</string>
     <string name="send_to">send to:</string>

@@ -74,14 +74,7 @@ public class MessageEditorActivity extends AsimovActivity {
 	@Override
 	public void onRequestPermissionsResult(int requestCode, String[] permissions,
 										   int[] grantResults) {
-		if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				// Permission is granted
-				submit(new ContactsFetcher(MessageEditorActivity.this));
-			} else {
-				Toast.makeText(this, "Can't Refer until Permissions are granted", Toast.LENGTH_SHORT).show();
-			}
-		}
+
 	}
 
 	private void configureAddNameButton() {
