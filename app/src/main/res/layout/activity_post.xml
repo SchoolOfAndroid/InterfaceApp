@@ -5,9 +5,22 @@
     android:layout_height="match_parent"
     tools:context="com.sumod.interfaceapp.PostActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout_with_toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout_with_toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"

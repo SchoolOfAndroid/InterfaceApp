@@ -1,8 +1,7 @@
 package com.sumod.interfaceapp.fragments;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.sumod.interfaceapp.Api;
-import com.sumod.interfaceapp.PostJobActivity_;
+
+import com.sumod.interfaceapp.PostActivity_;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.adapters.JobListAdapter;
 import com.sumod.interfaceapp.model.Job;
@@ -79,7 +78,7 @@ public class LeadsFragment extends Fragment {
         fab_postjob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PostJobActivity_.class);
+                Intent intent = new Intent(getContext(), PostActivity_.class);
                 startActivity(intent);
             }
         });

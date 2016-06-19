@@ -1,7 +1,17 @@
 package com.sumod.interfaceapp;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +20,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.sumod.interfaceapp.util.GPSTracker;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -46,6 +58,10 @@ public class PostActivity extends AppCompatActivity {
     @ViewById(R.id.products_layout) LinearLayout productsLayout;
     @ViewById(R.id.results_layout) LinearLayout resultsLayout;
 
+    @ViewById(R.id.toolbar) Toolbar mToolbar;
+
+    private static final int PERMISSIONS_ACCESS_COARSE_LOCATION = 100;
+
 
     @Click(R.id.btn_postJob)
     protected void postJob() {
@@ -77,6 +93,10 @@ public class PostActivity extends AppCompatActivity {
 
     @AfterViews
     protected void afterViews() {
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         populateSpinner(service_or_job, R.array.service_or_job_array);
         populateSpinner(jobPosting_need, R.array.occupations_array);
         populateSpinner(jobPosting_job, R.array.jobs_array);
@@ -138,5 +158,74 @@ public class PostActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         spinner.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_activity_post, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.get_location) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                    && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSIONS_ACCESS_COARSE_LOCATION);
+
+                //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
+
+            } else {
+                // Android version is lesser than 6.0 or the permission is already granted.
+
+                GPSTracker gps = new GPSTracker(this);
+                if (gps.canGetLocation()){
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+
+                    Toast.makeText(PostActivity.this, "Lat:" + latitude + " / Long:" + longitude, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    gps.showSettingsAlert(this);
+                }
+
+            }
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted
+
+                GPSTracker gps = new GPSTracker(this);
+                if (gps.canGetLocation()){
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+
+                    Toast.makeText(PostActivity.this, "Lat:" + latitude + " / Long:" + longitude, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    gps.showSettingsAlert(this);
+                }
+
+            } else {
+                Toast.makeText(this, "Location Permissions not granted", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
