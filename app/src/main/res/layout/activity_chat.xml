@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sumod.interfaceapp.ChatActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="150dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="ChatApp"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/msgslist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+        </android.support.v7.widget.RecyclerView>
+
+       <ProgressBar
+           android:id="@+id/progressBar2"
+           style="?android:attr/progressBarStyleSmall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:maxHeight="35dip"
+           android:minHeight="35dip"
+           android:minWidth="20dip"
+           android:maxWidth="20dip"
+           android:layout_centerInParent="true"
+           android:visibility="gone"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottomheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/writeMsg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint=" write your message here"
+            android:background="@null"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/disabledText"
+            android:textColor="@color/secondaryText" />
+
+
+        <ImageView
+            android:id="@+id/uploadMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/ic_send_grey"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

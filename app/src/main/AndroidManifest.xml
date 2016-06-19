@@ -24,15 +24,17 @@
         <activity android:name=".multisms.ContactSelectionActivity" />
         <activity android:name=".multisms.MessageEditorActivity" />
         <activity android:name=".NavigationDrawerActivity">
+        </activity>
+        <activity android:name=".FindActivity_" />
+        <activity android:name=".PostActivity_"></activity>
+
+        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".FindActivity_" />
-        <activity android:name=".PostActivity_">
-
         </activity>
     </application>
 

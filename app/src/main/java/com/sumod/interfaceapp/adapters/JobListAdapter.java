@@ -12,6 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sumod.interfaceapp.ChatActivity;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.model.Job;
 import com.sumod.interfaceapp.multisms.MessageEditorActivity;
@@ -81,7 +82,7 @@ public class JobListAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-                Toast.makeText(context, "Chat was clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ChatActivity.class);
                 notifyDataSetChanged();
             }
         });
