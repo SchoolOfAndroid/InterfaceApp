@@ -21,7 +21,8 @@ import retrofit2.Response;
 
 
 public class App extends Application {
-    public static String HOST = "http://192.168.1.103/mahendra/";
+//    public static String HOST = "http://192.168.1.103/mahendra/";
+    public static String HOST = "http://mh.bigindiannews.com";
     public static User currentUser = new User();
     public static CoreData core = new CoreData();
     public static FilterFragment.FilterSettings filter = new FilterFragment.FilterSettings();
