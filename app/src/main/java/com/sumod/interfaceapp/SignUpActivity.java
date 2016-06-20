@@ -3,7 +3,6 @@ package com.sumod.interfaceapp;
 
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,17 +28,23 @@ public class SignUpActivity extends AppCompatActivity {
     @ViewById(R.id.ed_user_phone)
     EditText userPhone;
 
-    @ViewById(R.id.spinner_user_area)
-    Spinner userArea;
+    @ViewById(R.id.spinner_user_area) Spinner userArea;
+    @ViewById(R.id.spinner_business_set_up) Spinner businessSetUp;
 
-    @ViewById(R.id.spinner_occupation)
-    Spinner userOccupation;
+    @ViewById(R.id.jobPosting_need) Spinner jobPosting_need;
+    @ViewById(R.id.jobPosting_job) Spinner jobPosting_job;
 
-    @ViewById(R.id.spinner_user_jobs)
-    Spinner userJobs;
+    @ViewById(R.id.service_spinner_name) Spinner serviceName;
+    @ViewById(R.id.service_spinner_occup) Spinner serviceOccup;
 
-    @ViewById(R.id.spinner_business_set_up)
-    Spinner businessSetUp;
+    @ViewById(R.id.products_spinner_ch) Spinner productsChannel;
+    @ViewById(R.id.products_spinner_name) Spinner productsName;
+
+
+    Integer getVal(Spinner spn) {
+        if (spn.getSelectedItemPosition() == 0) return null;
+        else return spn.getSelectedItemPosition();
+    }
 
 
     @Click(R.id.submit_button)
@@ -52,10 +57,11 @@ public class SignUpActivity extends AppCompatActivity {
                 userPhone.getText().toString(),
                 android_id,
                 businessSetUp.getSelectedItem().toString(),
-                1,
-                0, 0,
-                1, null,
-                0, 0
+
+                getVal(userArea),
+                getVal(jobPosting_job), getVal(jobPosting_need),
+                getVal(serviceOccup), getVal(serviceName),
+                getVal(productsChannel), getVal(productsName)
         );
 
 
@@ -68,7 +74,6 @@ public class SignUpActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Your account is already registered", Toast.LENGTH_LONG).show();
                 }
-
             }
 
 
@@ -84,9 +89,16 @@ public class SignUpActivity extends AppCompatActivity {
     @AfterViews
     protected void afterViews() {
         populateSpinner(userArea, R.array.areas_array);
-        populateSpinner(userOccupation, R.array.occupations_array);
-        populateSpinner(userJobs, R.array.jobs_array);
         populateSpinner(businessSetUp, R.array.business_setup_array);
+
+        populateSpinner(jobPosting_need, R.array.job_roles_array);
+        populateSpinner(jobPosting_job, R.array.job_sectors_array);
+
+        populateSpinner(serviceName, R.array.service_name_array);
+        populateSpinner(serviceOccup, R.array.service_occupations_array);
+
+        populateSpinner(productsChannel, R.array.product_channel_array);
+        populateSpinner(productsName, R.array.product_name_array);
     }
 
 

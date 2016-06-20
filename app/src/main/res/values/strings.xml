@@ -5,7 +5,7 @@
     <string name="leads">Leads</string>
     <string name="business">Business</string>
     <string name="messages">Messages</string>
-    <string name="logout">LogOut</string>
+    <string name="logout">Logout</string>
     <string name="refs">Refs</string>
 
 
@@ -75,13 +75,70 @@
         <item>Wiring</item>
     </string-array>
 
+    <string-array name="job_sectors_array">
+        <item>Select Job</item>
+        <item>Tax Return Filing</item>
+        <item>Water Proofing</item>
+        <item>Repairs and Maintenance</item>
+        <item>Wiring</item>
+    </string-array>
+
+    <string-array name="job_roles_array">
+        <item>Select Role</item>
+        <item>CEO</item>
+        <item>CTO</item>
+        <item>CMD</item>
+        <item>GM</item>
+        <item>Finance Manager</item>
+    </string-array>
+
+    <string-array name="service_occupations_array">
+        <item>Select Occupation</item>
+        <item>Plumber</item>
+        <item>Carpenter</item>
+        <item>Chartered Accountant</item>
+        <item>Mechanic</item>
+        <item>Electrician</item>
+    </string-array>
+
+    <string-array name="service_name_array">
+        <item>Select Service name</item>
+        <item>Accounting</item>
+        <item>Tax Return Filing</item>
+        <item>Waterproofing</item>
+        <item>Repairs &amp; Maintenance</item>
+        <item>Wiring</item>
+    </string-array>
+
+    <string-array name="product_channel_array">
+        <item>Select Channel</item>
+        <item>Producer Company</item>
+        <item>Wholesaler</item>
+        <item>Dealer</item>
+        <item>Distributor</item>
+        <item>Retailer</item>
+        <item>Online Ecommerce</item>
+    </string-array>
+
+
+    <string-array name="product_name_array">
+        <item>Select Product name</item>
+        <item>Computers</item>
+        <item>Mobiles</item>
+        <item>Automobiles</item>
+        <item>Bike Scooter</item>
+        <item>Printers</item>
+    </string-array>
+
+
     <string-array name="business_setup_array">
         <item>Select Business Setup</item>
         <item>Individual</item>
-        <item>Patnership Firm</item>
+        <item>Partnership Firm</item>
         <item>Public Ltd. Co.</item>
         <item>LLP</item>
     </string-array>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

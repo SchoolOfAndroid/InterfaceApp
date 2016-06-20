@@ -118,7 +118,16 @@ public class Api {
 
 
         @GET("leads.php")
-        Call<List<Lead>> getLeads(@Query("userid") int userId);
+        Call<List<Lead>> getLeads(
+                @Query("user_id") Integer userId,
+                @Query("job_seeker") Integer job_seeker,
+                @Query("service_seeker") Integer service_seeker,
+                @Query("product_seeker") Integer product_seeker,
+
+                @Query("no_jobs") Integer no_jobs,
+                @Query("no_services") Integer no_services,
+                @Query("no_products") Integer no_products
+        );
 
 
         @FormUrlEncoded
@@ -140,6 +149,9 @@ public class Api {
 
         @GET("proposals.php")
         Call<List<Proposal>> getProposals(@Query("user_id") int userId);
+
+        @GET("chat/getChats.php")
+        Call<List<Integer>> getChats(@Query("user_id") int userId);
 
 
         @FormUrlEncoded

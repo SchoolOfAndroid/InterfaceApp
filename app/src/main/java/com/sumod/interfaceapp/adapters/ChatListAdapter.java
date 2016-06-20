@@ -1,6 +1,7 @@
 package com.sumod.interfaceapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +12,24 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sumod.interfaceapp.ChatActivity;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.model.Chat;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by sumodkulkarni on 18/6/16.
  */
 public class ChatListAdapter extends BaseAdapter implements ListAdapter {
 
-    private ArrayList<Chat> chatList = new ArrayList<>();
+    private List<Chat> chatList = new ArrayList<>();
     private Context context;
 
 
-    public ChatListAdapter(Context context, ArrayList<Chat> list) {
+    public ChatListAdapter(Context context, List<Chat> list) {
         this.chatList = list;
         this.context = context;
     }
@@ -67,9 +71,18 @@ public class ChatListAdapter extends BaseAdapter implements ListAdapter {
 
         //Call this method when setting the profile picture for user2
         user2image.setImageDrawable(context.getResources().getDrawable(R.drawable.profile4));
-        user2name.setText(chatList.get(position).getUser2_name());
-        lastMessageTime.setText(chatList.get(position).getLastMessageTime());
+        user2name.setText(chatList.get(position).chat_name);
+        lastMessageTime.setText("");
 
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra(ChatActivity.PROPOSALID, chatList.get(position).propsal_id);
+                context.startActivity(intent);
+            }
+        });
         return view;
     }
 

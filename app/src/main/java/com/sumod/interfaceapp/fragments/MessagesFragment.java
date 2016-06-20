@@ -11,46 +11,35 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.sumod.interfaceapp.Api;
+import com.sumod.interfaceapp.App;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.adapters.ChatListAdapter;
 import com.sumod.interfaceapp.model.Chat;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MessagesFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    
-    private String mParam1;
-    private String mParam2;
-
     private ListView listView_chats;
-    ArrayList<Chat> chatList;
+    List<Chat> chatList = new ArrayList<>();
+    ChatListAdapter adapter;
+
+
     public MessagesFragment() {
         // Required empty public constructor
     }
 
 
-    public static MessagesFragment newInstance(String param1, String param2) {
-        MessagesFragment fragment = new MessagesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,11 +48,15 @@ public class MessagesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_messages, container, false);
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         listView_chats = (ListView) view.findViewById(R.id.listView_chats);
+
+        adapter = new ChatListAdapter(getContext(), chatList);
+        listView_chats.setAdapter(adapter);
 
         populateListView();
 
@@ -75,21 +68,29 @@ public class MessagesFragment extends Fragment {
         });
     }
 
+
     protected void populateListView() {
+        chatList.clear();
 
-        chatList = new ArrayList<>();
+        Api.service.getChats(App.currentUser.id).enqueue(new Callback<List<Integer>>() {
+            @Override
+            public void onResponse(Response<List<Integer>> response) {
+                chatList.clear();
 
-        chatList.add(new Chat(0, "User 0", "20:28"));
-        chatList.add(new Chat(1, "User 1", "19:28"));
-        chatList.add(new Chat(2, "User 2", "18:28"));
-        chatList.add(new Chat(3, "User 3", "17:28"));
-        chatList.add(new Chat(4, "User 4", "16:28"));
-        chatList.add(new Chat(5, "User 5", "15:28"));
+                for (Integer i : response.body()) {
+                    Chat chat = new Chat(i, "Chat #" + i);
+                    chatList.add(chat);
+                }
 
-        ChatListAdapter myChatListAdapter = new ChatListAdapter(getContext(), chatList);
+                adapter.notifyDataSetChanged();
+            }
 
-        listView_chats.setAdapter(myChatListAdapter);
 
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
     }
 
 }

@@ -2,6 +2,8 @@ package com.sumod.interfaceapp.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +11,11 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.sumod.interfaceapp.ChatActivity;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.model.Proposal;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -21,10 +24,10 @@ import java.util.ArrayList;
 public class ProposalListAdapter extends BaseAdapter implements ListAdapter {
 
     private Context context;
-    private ArrayList<Proposal> proposalsList;
+    private List<Proposal> proposalsList;
 
 
-    public ProposalListAdapter(Context context, ArrayList<Proposal> list) {
+    public ProposalListAdapter(Context context, List<Proposal> list) {
         this.context = context;
         this.proposalsList = list;
     }
@@ -49,8 +52,9 @@ public class ProposalListAdapter extends BaseAdapter implements ListAdapter {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
+
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.proposals_list_item, null);
@@ -63,6 +67,15 @@ public class ProposalListAdapter extends BaseAdapter implements ListAdapter {
         senderInfo.setText(proposalsList.get(position).getSenderInfo());
         reqInfo.setText(proposalsList.get(position).getRequestInfo());
         reqType.setText(proposalsList.get(position).getRequestType());
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra(ChatActivity.PROPOSALID, proposalsList.get(position).id);
+                context.startActivity(intent);
+            }
+        });
 
         return view;
     }

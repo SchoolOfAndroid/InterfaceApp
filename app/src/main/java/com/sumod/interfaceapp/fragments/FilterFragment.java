@@ -1,67 +1,104 @@
 package com.sumod.interfaceapp.fragments;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
+import com.sumod.interfaceapp.App;
 import com.sumod.interfaceapp.R;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+
 @EFragment(R.layout.fragment_filter)
 public class FilterFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-
-    private String mParam1;
-    private String mParam2;
-
-    @ViewById(R.id.checkbox_find_jobs)
-    CheckBox findJobs;
-
-    @ViewById(R.id.checkbox_find_services)
-    CheckBox findServices;
-
-    @ViewById(R.id.checkbox_offer_jobs)
-    CheckBox offerJobs;
-
-    @ViewById(R.id.checkbox_offer_services)
-    CheckBox offerServices;
+    @ViewById(R.id.checkbox_find_jobs) CheckBox findJobs;
+    @ViewById(R.id.checkbox_find_services) CheckBox findServices;
+    @ViewById(R.id.checkbox_offer_jobs) CheckBox offerJobs;
+    @ViewById(R.id.checkbox_offer_services) CheckBox offerServices;
+    @ViewById(R.id.checkbox_offer_products) CheckBox offerProducts;
+    @ViewById(R.id.checkbox_find_products) CheckBox findProducts;
 
     public FilterFragment() {
         // Required empty public constructor
     }
 
-    public static FilterFragment newInstance(String param1, String param2) {
-        FilterFragment fragment = new FilterFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+
+    @AfterViews
+    void afterViews() {
+        findJobs.setChecked(App.filter.findJobs);
+        findServices.setChecked(App.filter.findServices);
+        offerJobs.setChecked(App.filter.offerJobs);
+        offerServices.setChecked(App.filter.offerServices);
+        offerProducts.setChecked(App.filter.offerProducts);
+        findProducts.setChecked(App.filter.findProducts);
+
+        findJobs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d("c", "" + isChecked);
+                App.filter.findJobs = isChecked;
+            }
+        });
+
+        findServices.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                App.filter.findServices = isChecked;
+            }
+        });
+
+        offerJobs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                App.filter.offerJobs = isChecked;
+            }
+        });
+
+        offerServices.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                App.filter.offerServices = isChecked;
+            }
+        });
+
+        findProducts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                App.filter.findProducts = isChecked;
+            }
+        });
+
+        offerProducts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                App.filter.offerProducts = isChecked;
+            }
+        });
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_filter, container, false);
     }
 
 
+    public static class FilterSettings {
+        public Boolean findJobs = true;
+        public Boolean offerJobs = true;
+        public Boolean findServices = true;
+        public Boolean offerServices = true;
+        public Boolean offerProducts = true;
+        public Boolean findProducts = true;
+    }
 }

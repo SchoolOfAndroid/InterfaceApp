@@ -1,5 +1,6 @@
 package com.sumod.interfaceapp.fragments;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,12 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sumod.interfaceapp.FindActivity_;
 import com.sumod.interfaceapp.PostActivity_;
-import com.sumod.interfaceapp.PostJobActivity_;
 import com.sumod.interfaceapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class HomeFragment extends Fragment {
 
@@ -27,26 +29,26 @@ public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private FloatingActionButton fab_postjob;
+    private FloatingActionButton fab_findjob;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
-
     }
-
 
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -55,7 +57,6 @@ public class HomeFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
         fab_postjob = (FloatingActionButton) view.findViewById(R.id.fab_postjob);
-
         fab_postjob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,39 +65,62 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        fab_findjob = (FloatingActionButton) view.findViewById(R.id.fab_findjob);
+        fab_findjob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FindActivity_.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+    }
+
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
         adapter.addFragment(new ProposalsFragment(), getString(R.string.proposals));
         adapter.addFragment(new LeadsFragment(), getString(R.string.leads));
-        adapter.addFragment(new ReferencesFragments(), getString(R.string.refs));
-        adapter.addFragment(new FilterFragment(), "Filter");
+//        adapter.addFragment(new ReferencesFragments(), getString(R.string.refs));
+        adapter.addFragment(new FilterFragment_(), "Filter");
         viewPager.setAdapter(adapter);
     }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
+
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
+
 
         @Override
         public Fragment getItem(int position) {
             return mFragmentList.get(position);
         }
 
+
         @Override
         public int getCount() {
             return mFragmentList.size();
         }
 
+
         public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
+
 
         @Override
         public CharSequence getPageTitle(int position) {

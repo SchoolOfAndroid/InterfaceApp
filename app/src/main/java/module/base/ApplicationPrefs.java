@@ -1,5 +1,6 @@
 package module.base;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -22,6 +23,7 @@ public class ApplicationPrefs {
         this.context = context;
     }
 
+
     public static ApplicationPrefs getInstance(Context context) {
         if (prefsT == null) {
             prefsT = new ApplicationPrefs(context);
@@ -29,17 +31,20 @@ public class ApplicationPrefs {
         return prefsT;
     }
 
-    public void clearData(){
+
+    public void clearData() {
         SharedPreferences.Editor editor = getPrefsEditor();
         editor.clear();
         editor.commit();
     }
+
 
     public void setUserId(String userId) {
         SharedPreferences.Editor editor = getPrefsEditor();
         editor.putString(USER_ID, userId);
         editor.commit();
     }
+
 
     public String getUserId() {
         return getPrefs().getString(USER_ID, null);
@@ -50,11 +55,13 @@ public class ApplicationPrefs {
         return getUserId() != null && getUserId().toString().trim().length() > 0;
     }
 
+
     public void setNickName(String nickName) {
         SharedPreferences.Editor editor = getPrefsEditor();
         editor.putString(NICK_NAME, nickName);
         editor.commit();
     }
+
 
     public String getNickName() {
         return getPrefs().getString(NICK_NAME, null);
@@ -64,6 +71,8 @@ public class ApplicationPrefs {
     public String getDeviceid() {
         return getPrefs().getString(DEVICE_ID, null);
     }
+
+
     public void setDeviceId(String deviceId) {
         SharedPreferences.Editor editor = getPrefsEditor();
         editor.putString(DEVICE_ID, deviceId);
@@ -76,11 +85,15 @@ public class ApplicationPrefs {
         setNickName(null);
     }
 
-    public void clear() {}
+
+    public void clear() {
+    }
+
 
     protected SharedPreferences getPrefs() {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
+
 
     protected SharedPreferences.Editor getPrefsEditor() {
         return getPrefs().edit();

@@ -50,13 +50,15 @@ dependencies {
         exclude module: 'okhttp'
     }
     compile "com.squareup.retrofit2:converter-gson:$retrofit2Version"
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:design:$supportVersion"
+    compile "com.android.support:recyclerview-v7:$supportVersion"
     compile 'org.androidannotations:androidannotations:4.0.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.blunderer:materialdesignlibrary:2.0.4'
-    compile 'com.android.support:support-v4:23.4.0'
+    compile "com.android.support:support-v4:$supportVersion"
+
+    compile 'com.android.volley:volley:1.0.0'
 }
 
 apt {

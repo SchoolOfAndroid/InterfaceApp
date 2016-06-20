@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sumod.interfaceapp.App;
 import com.sumod.interfaceapp.R;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         VHitem.mnickname.setText(list.get(position).nickname);
         VHitem.mMsg.setText(list.get(position).text);
 
-        if (list.get(position).nickname.equals(ApplicationPrefs.getInstance(context).getNickName())) {
+        if (list.get(position).nickname.equals(App.currentUser.name)) {
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) VHitem.contentWithBG.getLayoutParams();
             layoutParams.gravity = Gravity.RIGHT;
             VHitem.contentWithBG.setLayoutParams(layoutParams);

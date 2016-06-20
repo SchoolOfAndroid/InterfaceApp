@@ -12,13 +12,15 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sumod.interfaceapp.ChatActivity;
+import com.sumod.interfaceapp.Api;
+import com.sumod.interfaceapp.App;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.model.Lead;
 import com.sumod.interfaceapp.model.Proposal;
 import com.sumod.interfaceapp.multisms.MessageEditorActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,14 +29,12 @@ import retrofit2.Response;
 /**
  * Created by sumodkulkarni on 12/6/16.
  */
-
 public class LeadListAdapter extends BaseAdapter implements ListAdapter {
-
-    private ArrayList<Lead> jobList = new ArrayList<>();
+    private List<Lead> jobList = new ArrayList<>();
     private Context context;
 
 
-    public LeadListAdapter(Context context, ArrayList<Lead> list) {
+    public LeadListAdapter(Context context, List<Lead> list) {
         this.jobList = list;
         this.context = context;
     }
@@ -72,8 +72,8 @@ public class LeadListAdapter extends BaseAdapter implements ListAdapter {
         TextView jobDescription = (TextView) view.findViewById(R.id.list_item_description);
 
         jobName.setText(jobList.get(position).getTitle());
-//        jobOccupation.setText(jobList.get(position).getOccupation());
         jobDescription.setText(jobList.get(position).description);
+        jobOccupation.setText(jobList.get(position).getMeta());
 
         //Handle buttons and add onClickListeners
         ImageView openChat = (ImageView) view.findViewById(R.id.list_item_eng);

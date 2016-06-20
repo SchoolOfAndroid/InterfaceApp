@@ -19,8 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sumod.interfaceapp.model.Lead;
 import com.sumod.interfaceapp.util.GPSTracker;
 
 import org.androidannotations.annotations.AfterViews;
@@ -49,7 +51,6 @@ public class PostActivity extends AppCompatActivity {
     @ViewById(R.id.products_spinner_name) Spinner productsName;
 
     @ViewById(R.id.jobPosting_description) EditText jobPosting_description;
-
     @ViewById(R.id.jobPosting_area) Spinner jobPosting_area;
 
     @ViewById(R.id.btn_postJob) Button button_postJob;
@@ -60,6 +61,7 @@ public class PostActivity extends AppCompatActivity {
     @ViewById(R.id.results_layout) LinearLayout resultsLayout;
 
     @ViewById(R.id.toolbar) Toolbar mToolbar;
+    @ViewById(R.id.title) TextView title;
 
     private static final int PERMISSIONS_ACCESS_COARSE_LOCATION = 100;
 
@@ -133,20 +135,20 @@ public class PostActivity extends AppCompatActivity {
     @AfterViews
     protected void afterViews() {
 
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         populateSpinner(service_or_job, R.array.service_or_job_array);
-        populateSpinner(jobPosting_need, R.array.occupations_array);
-        populateSpinner(jobPosting_job, R.array.jobs_array);
+        populateSpinner(jobPosting_need, R.array.job_roles_array);
+        populateSpinner(jobPosting_job, R.array.job_sectors_array);
         populateSpinner(jobPosting_area, R.array.areas_array);
 
-        populateSpinner(serviceName, R.array.areas_array);
-        populateSpinner(serviceOccup, R.array.areas_array);
+        populateSpinner(serviceName, R.array.service_name_array);
+        populateSpinner(serviceOccup, R.array.service_occupations_array);
 
-        populateSpinner(productsChannel, R.array.areas_array);
-        populateSpinner(productsName, R.array.areas_array);
-
+        populateSpinner(productsChannel, R.array.product_channel_array);
+        populateSpinner(productsName, R.array.product_name_array);
+        title.setText("Submit a new posting");
 
         service_or_job.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

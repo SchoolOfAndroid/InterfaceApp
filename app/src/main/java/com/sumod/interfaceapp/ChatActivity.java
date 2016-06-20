@@ -1,8 +1,9 @@
 package com.sumod.interfaceapp;
 
+
 import android.app.Activity;
-import android.os.Handler;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,21 +19,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import module.adapter.MessageAdapter;
-import module.app.AppController;
 import module.base.ApplicationPrefs;
 import module.bean.Chat;
 import module.bean.Message;
 import module.blu.ServerHelper;
 import module.http.BaseHttpRequestToken;
 
+
 public class ChatActivity extends Activity {
 
     private String GET_LIST = "getList";
     private String SEND_MSG = "sendmsg";
+    public static String PROPOSALID = "prop";
 
     private RecyclerView mrecyclerview;
     public List<Message> mlist;
@@ -45,13 +49,19 @@ public class ChatActivity extends Activity {
     private Handler mHandler;
     private int mInterval = 5000;
 
+    Integer proposal_id;
+
     // pagination
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        proposal_id = getIntent().getIntExtra(PROPOSALID, -1);
+
         setContentView(R.layout.activity_chat);
         initUI();
         setValues();
@@ -59,16 +69,17 @@ public class ChatActivity extends Activity {
 
 
     private void initUI() {
-        mrecyclerview= (RecyclerView) findViewById(R.id.msgslist);
-        mlist=new ArrayList<>();
-        mAdapter=new MessageAdapter(mlist,getApplicationContext(),ChatActivity.this);
-        writeMsg= (EditText) findViewById(R.id.writeMsg);
-        uploadMsg= (ImageView) findViewById(R.id.uploadMsg);
-        progressBar2= (ProgressBar) findViewById(R.id.progressBar2);
+        mrecyclerview = (RecyclerView) findViewById(R.id.msgslist);
+        mlist = new ArrayList<>();
+        mAdapter = new MessageAdapter(mlist, getApplicationContext(), ChatActivity.this);
+        writeMsg = (EditText) findViewById(R.id.writeMsg);
+        uploadMsg = (ImageView) findViewById(R.id.uploadMsg);
+        progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
         progressBar2.setVisibility(View.VISIBLE);
         mHandler = new Handler();
 
     }
+
 
     private void setValues() {
         mrecyclerview.setAdapter(mAdapter);
@@ -101,11 +112,10 @@ public class ChatActivity extends Activity {
                             startRepeatingTask();
                         }
                     }
-                }
-                else if (dy < 0 ) {
+                } else if (dy < 0) {
                     // Recycle view scrolling up...
                     stopRepeatingTask();
-                    AppController.getInstance().cancelPendingRequests(GET_LIST);
+                    App.getInstance().cancelPendingRequests(GET_LIST);
                 }
 
             }
@@ -115,13 +125,13 @@ public class ChatActivity extends Activity {
 
     private void processCommentData() {
 
-        String url = ServerHelper.GET_LIST;
+        String url = ServerHelper.GET_LIST + "?uid=" + App.currentUser.id + "&proposal_id=" + proposal_id;
 
         StringRequest strReq = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("TAG",response);
+                        Log.d("TAG", response);
 
                         Gson gson = new Gson();
                         Chat chatlist = gson.fromJson(response, Chat.class);
@@ -132,28 +142,27 @@ public class ChatActivity extends Activity {
                         progressBar2.setVisibility(View.GONE);
 
                         mHandler.postDelayed(mStatusChecker, mInterval);
-                        loading=true;
+                        loading = true;
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                loading=true;
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                loading = true;
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
         strReq.setRetryPolicy(new DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, GET_LIST);
-
+        App.getInstance().addToRequestQueue(strReq, GET_LIST);
     }
 
 
     private void sendMsg() {
 
-        if(writeMsg.getText().toString().trim().length()==0){
+        if (writeMsg.getText().toString().trim().length() == 0) {
             writeMsg.setError("required");
             return;
         }
@@ -161,15 +170,16 @@ public class ChatActivity extends Activity {
 
         String url = ServerHelper.SEND_MESSAGE;
 
-        HashMap<String,String> mymap=new HashMap<>();
-        mymap.put("uid",ApplicationPrefs.getInstance(getApplicationContext()).getUserId());
-        mymap.put("message",writeMsg.getText().toString());
+        HashMap<String, String> mymap = new HashMap<>();
+        mymap.put("uid", String.valueOf(App.currentUser.id));
+        mymap.put("message", writeMsg.getText().toString());
+        mymap.put("proposal_id", String.valueOf(proposal_id));
 
-        BaseHttpRequestToken strReq = new BaseHttpRequestToken(getApplicationContext(),Request.Method.POST, url,mymap,
+        BaseHttpRequestToken strReq = new BaseHttpRequestToken(getApplicationContext(), Request.Method.POST, url, mymap,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("TAG",response);
+                        Log.d("TAG", response);
                         writeMsg.setText("");
                         uploadMsg.setEnabled(true);
                         processCommentData();
@@ -177,7 +187,7 @@ public class ChatActivity extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
                 uploadMsg.setEnabled(true);
             }
         });
@@ -185,7 +195,7 @@ public class ChatActivity extends Activity {
         strReq.setRetryPolicy(new DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, SEND_MSG);
+        App.getInstance().addToRequestQueue(strReq, SEND_MSG);
 
     }
 
@@ -197,13 +207,16 @@ public class ChatActivity extends Activity {
         }
     };
 
+
     void startRepeatingTask() {
         mStatusChecker.run();
     }
 
+
     void stopRepeatingTask() {
         mHandler.removeCallbacks(mStatusChecker);
     }
+
 
     @Override
     protected void onPause() {
@@ -211,17 +224,18 @@ public class ChatActivity extends Activity {
         stopRepeatingTask();
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
         startRepeatingTask();
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppController.getInstance().cancelPendingRequests(GET_LIST);
-        AppController.getInstance().cancelPendingRequests(SEND_MSG);
-
+        App.getInstance().cancelPendingRequests(GET_LIST);
+        App.getInstance().cancelPendingRequests(SEND_MSG);
     }
 }
