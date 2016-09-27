@@ -1,8 +1,10 @@
 package com.sumod.interfaceapp.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,8 @@ import android.widget.ListView;
 
 import com.sumod.interfaceapp.Api;
 import com.sumod.interfaceapp.App;
+import com.sumod.interfaceapp.MapsActivity;
+import com.sumod.interfaceapp.NavigationDrawerActivity;
 import com.sumod.interfaceapp.R;
 import com.sumod.interfaceapp.adapters.LeadListAdapter;
 import com.sumod.interfaceapp.model.Lead;
@@ -30,6 +34,7 @@ public class LeadsFragment extends Fragment {
     private List<Lead> leads = new ArrayList<>();
     private LeadListAdapter adapter;
     private Button refreshButton;
+    private FloatingActionButton fabMap;
 
 
     public LeadsFragment() {
@@ -56,6 +61,7 @@ public class LeadsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView) view.findViewById(R.id.listView_jobs);
         refreshButton = (Button) view.findViewById(R.id.refreshButton);
+        fabMap = (FloatingActionButton) view.findViewById(R.id.fab_map);
         listView.setAdapter(adapter);
         populateListView();
 
@@ -63,6 +69,14 @@ public class LeadsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 populateListView();
+            }
+        });
+        fabMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+
+                startActivity(intent);
             }
         });
     }

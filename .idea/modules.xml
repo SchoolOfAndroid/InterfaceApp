@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Interface.iml" filepath="$PROJECT_DIR$/Interface.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android-sumod.iml" filepath="$PROJECT_DIR$/android-sumod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InterfaceApp.iml" filepath="$PROJECT_DIR$/InterfaceApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
